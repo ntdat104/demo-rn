@@ -1,12 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { FlatList, ScrollView, StyleSheet, View } from 'react-native';
+import CategoryListItem from './components/CategoryListItem';
 
+const categories = [
+  { id: 1, name: "Dụng cụ trượt tuyết" },
+  { id: 2, name: "Quần áo trượt tuyết" },
+  { id: 3, name: "Kính mũ" },
+  { id: 4, name: "Giày trượt tuyết" },
+]
+
+//TODO Cách sử dụng ScollView
+// export default function App() {
+//   return (
+//     <View style={styles.container}>
+//       <ScrollView contentContainerStyle={{ paddingLeft: 16, paddingRight: 16 }}>
+//         <CategoryListItem />
+//         <CategoryListItem />
+//         <CategoryListItem />
+//         <CategoryListItem />
+//         <CategoryListItem />
+//         <CategoryListItem />
+//       </ScrollView>
+//     </View>
+//   );
+// }
+
+//TODO Cách sử dụng FlatList
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <FlatList
+        data={categories}
+        renderItem={({ item }) => <CategoryListItem category={item}/>}
+        keyExtractor={(item) => `${item.id}`}
+        contentContainerStyle={{ paddingLeft: 16, paddingRight: 16 }}
+      />
     </View>
   );
 }
@@ -14,8 +42,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    alignItems: "stretch",
+    backgroundColor: "#fff",
+    justifyContent: "center",
+  }
+})
